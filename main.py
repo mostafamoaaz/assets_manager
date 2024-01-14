@@ -46,7 +46,7 @@ def append_to_workbook(wb, data_to_append):
         ws = wb.active
         ws.append(data_to_append)  # Append a row with the provided data
         wb.save(DB)  # Save the changes
-        print("Row appended and workbook closed successfully.")
+        print("Row appended successfully.")
         return True
     except Exception as e:
         print(f"Error while appending: {e}")
@@ -56,6 +56,7 @@ def close_workbook(wb):
     try:
         ws = wb.active
         wb.close()  # Close the workbook
+        print("Workbook closed successfully.")
         return True
     except Exception as e:
         print(f"Error while closing: {e}")
@@ -111,6 +112,7 @@ def user():
         emp_name = input("please enter your name:  ")
         exist = []
         exist.append([emp_id, emp_name, "N/A", "N/A", "N/A", datetime.datetime.now() ]) 
+    
     print("Hello, "+exist[0][1]+"!")
     print("you have "+str(len(exist) - 1)+" assets")
     if len(exist) :
@@ -118,16 +120,16 @@ def user():
         print("Type","S/N","Note","Time stamp",sep="\t")
         for i in exist[:-1]:
             print(i[2],i[3],i[4],i[5],sep="\t")
+    save_data()
     
 def main_menu():
-    wb = open_workbook()
     print("1 - enter user data")
     print("2 - list by:")
     x = int(input('Enter a number: '))
     
     if x == 1:
         user()
-        append_to_workbook(wb, data_to_append)
+        
 
 
 if __name__ == "__main__":
